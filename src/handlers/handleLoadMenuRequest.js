@@ -9,9 +9,11 @@ import { jsonResponse } from '../utils/jsonResponse';
 export async function handleLoadMenuRequest(env, request) {
     // Placeholder for loading saved songs.
     console.log('Loading saved songs for menu.');
-    const savedSongs = [
-        { id: 1, title: 'Saved Song 1', artist: 'Artist 1' },
-        { id: 2, title: 'Saved Song 2', artist: 'Artist 2' },
-    ];
-    return jsonResponse({ savedSongs });
+    const { results } = await env.translationsdb.prepare(
+            "SELECT * FROM Songs"
+        )
+        .bind("Bs Beverages")
+        .run();
+
+    return jsonResponse({ results });
 }

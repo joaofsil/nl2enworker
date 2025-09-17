@@ -2,7 +2,8 @@ import { jsonResponse } from '../utils/jsonResponse';
 
 
 async function callAIAgent(env, query) {
-    const res = await env.AI.run("@cf/meta/llama-3.1-8b-instruct", {
+    //const res = await env.AI.run("@cf/meta/llama-3.1-8b-instruct", {
+    const res = await env.AI.run("@cf/mistral/mistral-7b-instruct-v0.1", {
         messages: [
             {
                 "role": "user", "content": "I want the lyrics for the song " + 
