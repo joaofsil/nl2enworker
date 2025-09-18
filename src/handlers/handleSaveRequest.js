@@ -7,7 +7,7 @@ async function dbStoreSong(env, song) {
     try {
         const {results} = await env.DB.prepare(
             "insert into songs (songid, title, author, song, translation) values (" +
-            ?, ?, ?, ?, ? +
+            "?, ?, ?, ?, ?" +
             ")"
         )
         .bind(songid, song.title, song.author, song.song, song.translation)
