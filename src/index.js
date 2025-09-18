@@ -22,7 +22,7 @@ export default {
 		if (url.pathname === '/api/search' && request.method === 'GET') {
 			return handleSearchRequest(env, request);
 		}
-		if (url.pathname === '/api/translate' && request.method === 'GET') {
+		if (url.pathname === '/api/translate' && request.method === 'POST') {
 			return handleTranslateRequest(env, request);
 		}
 		if (url.pathname === '/api/save' && request.method === 'POST') {

@@ -5,9 +5,9 @@ async function callAIAgent(env, query) {
     const res = await env.AI.run("@cf/meta/llama-3.1-8b-instruct", {
         messages: [
             {
-                "role": "user", "content": "I want the lyrics for the song " +
-                    query +
-                    ". Translate the lyrics to english and respond to me with nothing but the translation."
+                "role": "user", "content": "I want to translate the following text in dutch to english. " +
+                "Translate the text to english and respond to me with nothing but the translation. The text is:" +
+                    query
             }
         ]
     });
@@ -23,17 +23,16 @@ async function callAIAgent(env, query) {
  * @returns {Response} The response to send back.
  */
 export async function handleTranslateRequest(env, request) {
-    const url = new URL(request.url);
-    const song = url.searchParams.get('song');
+    const song = await request.json();
 
-    if (!song) {
-        return jsonResponse({ message: 'Missing songId parameter.' }, { status: 400 });
+    if (!song.title || !song.author || !song.song) {
+        return jsonResponse({ message: 'Missing song parameters. Make sure to provide all info about the song.' }, { status: 400 });
     }
 
     // Placeholder for translation logic.
-    console.log(`Translating song with ID: ${song}`);
+    console.log(`Translating song with ID: ${song.title}`);
 
-    const json_song = await callAIAgent(env, song);
+    const json_song = await callAIAgent(env, song.song);
     const translation = json_song.response;
 /*
     const originalLyrics = "Dit is een voorbeeldtekst.";
@@ -41,6 +40,7 @@ export async function handleTranslateRequest(env, request) {
 */
 
     return jsonResponse({ 
-        message: translation
+        message: "The translation of the song is complete.",
+        translation: translation
     });
 }
