@@ -47,4 +47,11 @@
 	"ai": {
 		"binding": "AI"
 	}
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "translationsdb",
+			"database_id": "f8b1116a-c298-4852-ae70-b975362c51c8"
+		}
+	]
 }
