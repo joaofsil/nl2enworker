@@ -12,12 +12,14 @@ async function dbStoreSong(env, song) {
         )
         .bind(songid, song.title, song.author, song.song, song.translation)
         .run();
+        console.log('The query ran. Results are ' + results);
+
+        return results;
     } catch(error) {
         console.log("statement failed." + error);
     }
-    console.log('The query ran. Results are ' + results);
 
-    return results;
+    return {};
 }
 
 /**
