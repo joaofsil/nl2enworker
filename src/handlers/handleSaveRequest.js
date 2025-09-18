@@ -4,12 +4,17 @@ const  { createHash   } = require('crypto');
 async function dbStoreSong(env, song) {
     const songid = createHash('sha256').update(song.song).digest('hex');
     console.log('song hash:' + songid);
-    const {results} = await env.DB.prepare(
-        "insert into songs (songid, title, author, song, translation) values ('" +
-        songid + "', '" + song.title + "', '" + song.author + "', '" + song.song + "', '" + song.translation +
-        "')"
-    )
-    .run();
+    try {
+        const {results} = await env.DB.prepare(
+            "insert into songs (songid, title, author, song, translation) values (" +
+            ?, ?, ?, ?, ? +
+            ")"
+        )
+        .bind(songid, song.title, song.author, song.song, song.translation)
+        .run();
+    } catch(error) {
+        console.log("statement failed." + error);
+    }
     console.log('The query ran. Results are ' + results);
 
     return results;
