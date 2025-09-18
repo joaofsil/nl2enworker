@@ -1,6 +1,6 @@
 
 
 DROP TABLE IF EXISTS Songs;
-CREATE TABLE IF NOT EXISTS Songs (SongId TEXT PRIMARY KEY, Original TEXT, translated TEXT);
+CREATE TABLE IF NOT EXISTS Songs (songid TEXT PRIMARY KEY, title TEXT, author TEXT, song TEXT, translation TEXT);
 
 --INSERT INTO Customers (CustomerID, CompanyName, ContactName) VALUES (1, 'Alfreds Futterkiste', 'Maria Anders'), (4, 'Around the Horn', 'Thomas Hardy'), (11, 'Bs Beverages', 'Victoria Ashworth'), (13, 'Bs Beverages', 'Random Name');

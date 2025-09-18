@@ -1,4 +1,17 @@
 import { jsonResponse } from '../utils/jsonResponse';
+const  { createHash   } = require('crypto');
+
+async function dbStoreSong(song) {
+    const songid = createHash('sha256').update(song.song).digest('hex');
+    const {results} = await env.translations.prepare(
+        "insert into songs (songid, title, author, song, translation) values (" +
+        songid, song.title, song.author, song.song, song.translation +
+        ")"
+    )
+    .run();
+
+    return results;
+}
 
 /**
  * Handles saving a song.
@@ -10,14 +23,16 @@ export async function handleSaveRequest(env, request) {
     try {
         const song = await request.json();
 
-        if (!song.title || !song.artist) {
-            return jsonResponse({ message: 'Missing song title or artist in request body.' }, { status: 400 });
+        if (!song.title || !song.artist || !song.song || !song.translation) {
+            return jsonResponse({ message: 'Missing song parameters. Make sure to provide all info about the song.' }, { status: 400 });
         }
 
         // Placeholder for save logic.
         console.log('Saving song:', song);
 
-        return jsonResponse({ message: 'Song saved successfully.', song }, { status: 201 });
+        const save = await dbStoreSong(song);
+
+        return jsonResponse({ message: 'Song saved successfully.', save }, { status: 201 });
     } catch (error) {
         return jsonResponse({ message: 'Invalid JSON in request body.' }, { status: 400 });
     }

@@ -12,7 +12,7 @@ export async function handleLoadMenuRequest(env, request) {
     const { results } = await env.translationsdb.prepare(
             "SELECT * FROM Songs"
         )
-        .bind("Bs Beverages")
+        //.bind("Bs Beverages")
         .run();
 
     return jsonResponse({ results });
