@@ -4,7 +4,7 @@ const  { createHash   } = require('crypto');
 async function dbStoreSong(env, song) {
     const songid = createHash('sha256').update(song.song).digest('hex');
     console.log('song hash:' + songid);
-    const {results} = await env.translations.prepare(
+    const {results} = await env.translationsdb.prepare(
         "insert into songs (songid, title, author, song, translation) values (" +
         songid, song.title, song.author, song.song, song.translation +
         ")"
