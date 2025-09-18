@@ -3,12 +3,14 @@ const  { createHash   } = require('crypto');
 
 async function dbStoreSong(song) {
     const songid = createHash('sha256').update(song.song).digest('hex');
+    console.log('song hash:' + songid);
     const {results} = await env.translations.prepare(
         "insert into songs (songid, title, author, song, translation) values (" +
         songid, song.title, song.author, song.song, song.translation +
         ")"
     )
     .run();
+    console.log('The query ran. Results are ' + results);
 
     return results;
 }
@@ -31,9 +33,10 @@ export async function handleSaveRequest(env, request) {
         console.log('Saving song:', song);
 
         const save = await dbStoreSong(song);
+        console.log('song is saved');
 
         return jsonResponse({ message: 'Song saved successfully.', save }, { status: 201 });
     } catch (error) {
-        return jsonResponse({ message: 'Invalid JSON in request body.' }, { status: 400 });
+        return jsonResponse({ message: 'Invalid JSON in request body.' + error }, { status: 400 });
     }
 }
