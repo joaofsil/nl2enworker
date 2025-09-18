@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "nl2enworkers",
+	"name": "nl2enworker",
 	"main": "src/index.js",
 	"compatibility_date": "2025-09-12",
 	"observability": {
