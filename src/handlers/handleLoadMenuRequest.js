@@ -9,8 +9,8 @@ import { jsonResponse } from '../utils/jsonResponse';
 export async function handleLoadMenuRequest(env, request) {
     // Placeholder for loading saved songs.
     console.log('Loading saved songs for menu.');
-    const { results } = await env.translationsdb.prepare(
-            "SELECT * FROM Songs"
+    const { results } = await env.DB.prepare(
+            "SELECT songid, title, author FROM Songs"
         )
         //.bind("Bs Beverages")
         .run();
