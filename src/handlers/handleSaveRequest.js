@@ -5,9 +5,9 @@ async function dbStoreSong(env, song) {
     const songid = createHash('sha256').update(song.song).digest('hex');
     console.log('song hash:' + songid);
     const {results} = await env.DB.prepare(
-        "insert into songs (songid, title, author, song, translation) values (" +
-        songid, song.title, song.author, song.song, song.translation +
-        ")"
+        "insert into songs (songid, title, author, song, translation) values ('" +
+        songid + "', '" + song.title + "', '" + song.author + "', '" + song.song + "', '" + song.translation +
+        "')"
     )
     .run();
     console.log('The query ran. Results are ' + results);
