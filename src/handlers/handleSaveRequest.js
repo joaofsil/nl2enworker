@@ -23,7 +23,7 @@ export async function handleSaveRequest(env, request) {
     try {
         const song = await request.json();
 
-        if (!song.title || !song.artist || !song.song || !song.translation) {
+        if (!song.title || !song.author || !song.song || !song.translation) {
             return jsonResponse({ message: 'Missing song parameters. Make sure to provide all info about the song.' }, { status: 400 });
         }
 
