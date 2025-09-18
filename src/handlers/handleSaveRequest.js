@@ -1,7 +1,7 @@
 import { jsonResponse } from '../utils/jsonResponse';
 const  { createHash   } = require('crypto');
 
-async function dbStoreSong(song) {
+async function dbStoreSong(env, song) {
     const songid = createHash('sha256').update(song.song).digest('hex');
     console.log('song hash:' + songid);
     const {results} = await env.translations.prepare(
@@ -32,7 +32,7 @@ export async function handleSaveRequest(env, request) {
         // Placeholder for save logic.
         console.log('Saving song:', song);
 
-        const save = await dbStoreSong(song);
+        const save = await dbStoreSong(env, song);
         console.log('song is saved');
 
         return jsonResponse({ message: 'Song saved successfully.', save }, { status: 201 });
