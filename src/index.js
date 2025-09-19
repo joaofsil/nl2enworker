@@ -31,6 +31,9 @@ export default {
 		if (url.pathname === '/api/loadmenu' && request.method === 'GET') {
 			return handleLoadMenuRequest(env, request);
 		}
+		if (url.pathname === '/api/song' && request.method === 'GET') {
+			return handleSongRequest(env, request);
+		}
 		if (url.pathname === '/api/travel_plan' && request.method === 'GET') {
 			return handleTravelPlanRequest(env, request);
 		}

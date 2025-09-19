@@ -12,7 +12,6 @@ export async function handleLoadMenuRequest(env, request) {
     const { results } = await env.DB.prepare(
             "SELECT songid, title, author FROM Songs"
         )
-        //.bind("Bs Beverages")
         .run();
 
     return jsonResponse({ results });
