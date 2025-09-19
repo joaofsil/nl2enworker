@@ -7,12 +7,13 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
-import { handleSearchRequest }     from './handlers/handleSearchRequest';
-import { handleTranslateRequest }  from './handlers/handleTranslateRequest';
-import { handleSaveRequest }       from './handlers/handleSaveRequest';
-import { handleLoadMenuRequest }   from './handlers/handleLoadMenuRequest';
-import { handleTravelPlanRequest } from './handlers/handleTravelPlanRequest';
 import { jsonResponse }            from './utils/jsonResponse';
+import { handleSaveRequest }       from './handlers/handleSaveRequest';
+import { handleSongRequest }       from './handlers/handleSongRequest';
+import { handleSearchRequest }     from './handlers/handleSearchRequest';
+import { handleLoadMenuRequest }   from './handlers/handleLoadMenuRequest';
+import { handleTranslateRequest }  from './handlers/handleTranslateRequest';
+import { handleTravelPlanRequest } from './handlers/handleTravelPlanRequest';
 
 export default {
 	async fetch(request, env, ctx) {
