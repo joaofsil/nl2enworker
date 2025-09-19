@@ -18,7 +18,7 @@ async function dbSearchSong(env, songid) {
  */
 
 
-export async function handleSearchRequest(env, request) {
+export async function handleSongRequest(env, request) {
     const url = new URL(request.url);
     const songid = url.searchParams.get('song');
 
