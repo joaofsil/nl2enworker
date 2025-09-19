@@ -6,7 +6,7 @@ async function dbSearchSong(env, songid) {
     .bind(songid)
     .run();
 
-    return (res);
+    return (res.results[0]);
 }
     
 
